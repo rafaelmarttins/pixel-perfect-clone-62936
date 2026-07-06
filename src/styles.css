@@ -1,16 +1,26 @@
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
+@import "@fontsource/sora/400.css";
+@import "@fontsource/sora/500.css";
+@import "@fontsource/sora/600.css";
+@import "@fontsource/sora/700.css";
+@import "@fontsource/manrope/400.css";
+@import "@fontsource/manrope/500.css";
+@import "@fontsource/manrope/600.css";
+@import "@fontsource/manrope/700.css";
 
 @custom-variant dark (&:is(.dark *));
 
 /*
  * DTI HUB — Design system.
- * Dark, minimal, institutional. Inspired by Linear/Notion/Vercel.
- * Primary: #1F3864 (dark blue). Accent: subtle green.
+ * Light, colorido e interativo. Base clara com acentos mint (#2dd4a8) e índigo (#4f46e5).
+ * Tipografia: Sora (títulos) + Manrope (corpo).
  */
 
 @theme inline {
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Sora", "Manrope", ui-sans-serif, system-ui, sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -55,66 +65,83 @@
   --color-success-foreground: var(--success-foreground);
   --color-warning: var(--warning);
   --color-warning-foreground: var(--warning-foreground);
+  --color-brand-mint: var(--brand-mint);
+  --color-brand-indigo: var(--brand-indigo);
 }
 
 :root {
-  /* Always dark. Tokens defined once. */
+  /* Light, colorful, interactive. */
   --radius: 0.625rem;
 
-  --background: oklch(0.16 0.02 265);
-  --foreground: oklch(0.96 0.005 250);
+  /* Neutral base — slate 50/200 style */
+  --background: oklch(0.985 0.003 250);        /* #f8fafc */
+  --foreground: oklch(0.22 0.03 265);          /* deep slate */
 
-  --card: oklch(0.20 0.024 265);
-  --card-foreground: oklch(0.96 0.005 250);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.22 0.03 265);
 
-  --popover: oklch(0.19 0.024 265);
-  --popover-foreground: oklch(0.96 0.005 250);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.22 0.03 265);
 
-  /* #1F3864 → oklch */
-  --primary: oklch(0.34 0.09 264);
-  --primary-foreground: oklch(0.98 0.005 250);
+  /* Primary = indigo #4f46e5 */
+  --primary: oklch(0.52 0.22 275);
+  --primary-foreground: oklch(0.99 0 0);
 
-  --secondary: oklch(0.26 0.028 265);
-  --secondary-foreground: oklch(0.96 0.005 250);
+  /* Secondary = slate-200 */
+  --secondary: oklch(0.92 0.01 255);           /* #e2e8f0 */
+  --secondary-foreground: oklch(0.28 0.04 265);
 
-  --muted: oklch(0.24 0.024 265);
-  --muted-foreground: oklch(0.68 0.02 260);
+  --muted: oklch(0.955 0.006 250);
+  --muted-foreground: oklch(0.50 0.03 260);
 
-  --accent: oklch(0.30 0.055 265);
-  --accent-foreground: oklch(0.98 0.005 250);
+  /* Accent = mint #2dd4a8 */
+  --accent: oklch(0.82 0.14 172);
+  --accent-foreground: oklch(0.22 0.06 180);
 
   --destructive: oklch(0.60 0.22 25);
-  --destructive-foreground: oklch(0.98 0.005 250);
+  --destructive-foreground: oklch(0.99 0 0);
 
-  --success: oklch(0.68 0.14 155);
-  --success-foreground: oklch(0.16 0.02 265);
+  --success: oklch(0.72 0.16 165);
+  --success-foreground: oklch(0.20 0.05 170);
 
-  --warning: oklch(0.78 0.15 75);
-  --warning-foreground: oklch(0.16 0.02 265);
+  --warning: oklch(0.80 0.16 80);
+  --warning-foreground: oklch(0.24 0.05 70);
 
-  --border: oklch(1 0 0 / 8%);
-  --input: oklch(1 0 0 / 10%);
-  --ring: oklch(0.55 0.11 264);
+  --border: oklch(0.90 0.01 255);
+  --input: oklch(0.90 0.01 255);
+  --ring: oklch(0.52 0.22 275);
 
-  --chart-1: oklch(0.55 0.11 264);
-  --chart-2: oklch(0.68 0.14 155);
-  --chart-3: oklch(0.78 0.15 75);
-  --chart-4: oklch(0.60 0.22 25);
-  --chart-5: oklch(0.60 0.10 300);
+  /* Colorful chart palette */
+  --chart-1: oklch(0.52 0.22 275);   /* indigo */
+  --chart-2: oklch(0.75 0.16 172);   /* mint */
+  --chart-3: oklch(0.78 0.16 60);    /* amber */
+  --chart-4: oklch(0.65 0.22 25);    /* coral */
+  --chart-5: oklch(0.62 0.20 330);   /* magenta */
 
-  --sidebar: oklch(0.14 0.018 265);
-  --sidebar-foreground: oklch(0.90 0.01 260);
-  --sidebar-primary: oklch(0.34 0.09 264);
-  --sidebar-primary-foreground: oklch(0.98 0.005 250);
-  --sidebar-accent: oklch(0.22 0.028 265);
-  --sidebar-accent-foreground: oklch(0.96 0.005 250);
-  --sidebar-border: oklch(1 0 0 / 6%);
-  --sidebar-ring: oklch(0.55 0.11 264);
+  /* Sidebar — soft indigo-tinted white with mint highlight on active */
+  --sidebar: oklch(0.99 0.005 260);
+  --sidebar-foreground: oklch(0.30 0.03 265);
+  --sidebar-primary: oklch(0.52 0.22 275);
+  --sidebar-primary-foreground: oklch(0.99 0 0);
+  --sidebar-accent: oklch(0.955 0.02 175);      /* tinted mint hover */
+  --sidebar-accent-foreground: oklch(0.30 0.08 180);
+  --sidebar-border: oklch(0.92 0.01 255);
+  --sidebar-ring: oklch(0.75 0.16 172);
+
+  /* Brand tokens for gradients/glows */
+  --brand-mint: oklch(0.78 0.15 172);           /* #2dd4a8 */
+  --brand-indigo: oklch(0.52 0.22 275);         /* #4f46e5 */
+  --gradient-brand: linear-gradient(135deg, var(--brand-indigo), var(--brand-mint));
+  --gradient-soft: linear-gradient(135deg, oklch(0.97 0.03 275), oklch(0.97 0.04 172));
+  --shadow-glow: 0 10px 30px -12px color-mix(in oklab, var(--brand-indigo) 35%, transparent);
+  --shadow-mint: 0 10px 30px -12px color-mix(in oklab, var(--brand-mint) 45%, transparent);
+  --shadow-card: 0 1px 2px 0 rgb(15 23 42 / 0.04), 0 4px 12px -2px rgb(15 23 42 / 0.06);
 }
 
 @layer base {
   html {
-    color-scheme: dark;
+    color-scheme: light;
+    font-family: var(--font-sans);
   }
   * {
     border-color: var(--color-border);
@@ -123,8 +150,55 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    background-image:
+      radial-gradient(1200px 600px at -10% -10%, color-mix(in oklab, var(--brand-indigo) 12%, transparent), transparent 60%),
+      radial-gradient(900px 500px at 110% 10%, color-mix(in oklab, var(--brand-mint) 14%, transparent), transparent 55%);
+    background-attachment: fixed;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    letter-spacing: -0.015em;
+  }
+  ::selection {
+    background: color-mix(in oklab, var(--brand-mint) 55%, transparent);
+    color: var(--color-foreground);
+  }
+}
+
+/* Interactive utilities — subtle-to-medium colored motion */
+@utility gradient-brand {
+  background-image: var(--gradient-brand);
+}
+@utility gradient-soft {
+  background-image: var(--gradient-soft);
+}
+@utility text-gradient-brand {
+  background-image: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+@utility shadow-glow {
+  box-shadow: var(--shadow-glow);
+}
+@utility shadow-card {
+  box-shadow: var(--shadow-card);
+}
+@utility hover-lift {
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow);
+    border-color: color-mix(in oklab, var(--brand-indigo) 35%, var(--color-border));
+  }
+}
+@utility hover-mint {
+  transition: color 180ms ease, background-color 180ms ease;
+  &:hover {
+    color: var(--brand-indigo);
+    background-color: color-mix(in oklab, var(--brand-mint) 18%, transparent);
   }
 }
 
@@ -146,7 +220,8 @@
   .prose-dti h2 { font-size: 1.35rem; border-bottom: 1px solid var(--color-border); padding-bottom: 0.3em; }
   .prose-dti h3 { font-size: 1.1rem; }
   .prose-dti p { margin: 0.75em 0; }
-  .prose-dti a { color: oklch(0.72 0.12 240); text-decoration: underline; text-underline-offset: 3px; }
+  .prose-dti a { color: var(--brand-indigo); text-decoration: underline; text-underline-offset: 3px; }
+  .prose-dti a:hover { color: color-mix(in oklab, var(--brand-indigo) 70%, var(--brand-mint)); }
   .prose-dti ul, .prose-dti ol { margin: 0.75em 0; padding-left: 1.5em; }
   .prose-dti li { margin: 0.25em 0; }
   .prose-dti li > input[type="checkbox"] { margin-right: 0.5em; }
@@ -156,9 +231,11 @@
     border-radius: 4px;
     font-size: 0.85em;
     font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    color: var(--brand-indigo);
   }
   .prose-dti pre {
-    background: oklch(0.12 0.015 265);
+    background: oklch(0.20 0.03 265);
+    color: oklch(0.96 0.01 250);
     border: 1px solid var(--color-border);
     border-radius: 8px;
     padding: 1em;
@@ -167,7 +244,7 @@
   }
   .prose-dti pre code { background: transparent; padding: 0; font-size: 0.85em; }
   .prose-dti blockquote {
-    border-left: 3px solid var(--color-primary);
+    border-left: 3px solid var(--brand-mint);
     padding: 0.4em 1em;
     color: var(--color-muted-foreground);
     margin: 1em 0;
