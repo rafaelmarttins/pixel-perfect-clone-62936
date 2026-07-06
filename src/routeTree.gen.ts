@@ -14,6 +14,7 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AuthenticatedIndexRouteImport } from './routes/_authenticated/index'
 import { Route as AuthenticatedDocumentacaoIndexRouteImport } from './routes/_authenticated/documentacao.index'
+import { Route as AuthenticatedDocumentacaoNovoRouteImport } from './routes/_authenticated/documentacao.novo'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
@@ -40,17 +41,25 @@ const AuthenticatedDocumentacaoIndexRoute =
     path: '/documentacao/',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedDocumentacaoNovoRoute =
+  AuthenticatedDocumentacaoNovoRouteImport.update({
+    id: '/documentacao/novo',
+    path: '/documentacao/novo',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof AuthenticatedIndexRoute
   '/auth': typeof AuthRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/documentacao/novo': typeof AuthenticatedDocumentacaoNovoRoute
   '/documentacao/': typeof AuthenticatedDocumentacaoIndexRoute
 }
 export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/': typeof AuthenticatedIndexRoute
+  '/documentacao/novo': typeof AuthenticatedDocumentacaoNovoRoute
   '/documentacao': typeof AuthenticatedDocumentacaoIndexRoute
 }
 export interface FileRoutesById {
@@ -59,19 +68,26 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/_authenticated/': typeof AuthenticatedIndexRoute
+  '/_authenticated/documentacao/novo': typeof AuthenticatedDocumentacaoNovoRoute
   '/_authenticated/documentacao/': typeof AuthenticatedDocumentacaoIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/sitemap.xml' | '/documentacao/'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/sitemap.xml'
+    | '/documentacao/novo'
+    | '/documentacao/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/auth' | '/sitemap.xml' | '/' | '/documentacao'
+  to: '/auth' | '/sitemap.xml' | '/' | '/documentacao/novo' | '/documentacao'
   id:
     | '__root__'
     | '/_authenticated'
     | '/auth'
     | '/sitemap.xml'
     | '/_authenticated/'
+    | '/_authenticated/documentacao/novo'
     | '/_authenticated/documentacao/'
   fileRoutesById: FileRoutesById
 }
@@ -118,16 +134,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDocumentacaoIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/documentacao/novo': {
+      id: '/_authenticated/documentacao/novo'
+      path: '/documentacao/novo'
+      fullPath: '/documentacao/novo'
+      preLoaderRoute: typeof AuthenticatedDocumentacaoNovoRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
+  AuthenticatedDocumentacaoNovoRoute: typeof AuthenticatedDocumentacaoNovoRoute
   AuthenticatedDocumentacaoIndexRoute: typeof AuthenticatedDocumentacaoIndexRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
+  AuthenticatedDocumentacaoNovoRoute: AuthenticatedDocumentacaoNovoRoute,
   AuthenticatedDocumentacaoIndexRoute: AuthenticatedDocumentacaoIndexRoute,
 }
 
