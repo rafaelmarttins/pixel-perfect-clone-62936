@@ -188,5 +188,4 @@
   .prose-dti th { background: var(--color-muted); font-weight: 600; }
   .prose-dti hr { border-color: var(--color-border); margin: 2em 0; }
   .prose-dti img { max-width: 100%; border-radius: 8px; margin: 1em 0; }
-  }
 }
